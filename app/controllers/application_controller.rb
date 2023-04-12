@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_action :store_user_location!, if: :storable_location?
   before_action :authenticate_user!
   before_action :set_current_user
+  before_action :set_timeout_duration
   before_action :set_current_organization
   after_action :verify_authorized, except: :index, unless: :devise_controller?
   # after_action :verify_policy_scoped, only: :index
@@ -98,6 +99,10 @@ class ApplicationController < ActionController::Base
     RequestStore.store[:current_user] = current_user
   end
 
+  def set_timeout_duration
+    @timeout_duration = current_user.timeout_in
+  end
+
   def set_current_organization
     RequestStore.store[:current_organization] = current_organization
   end
@@ -107,4 +112,5 @@ class ApplicationController < ActionController::Base
     flash[:notice] = "Sorry, you are not authorized to perform this action."
     redirect_to(root_url)
   end
+  
 end
