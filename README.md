@@ -113,7 +113,7 @@ If you are using Ubuntu on WSL and receive the following message when trying to 
 **Installing Packages**
 1. `cd casa/`
 1. `bundle install` install ruby dependencies.
-1. `yarn` install javascript dependencies.
+1. `yarn install` javascript dependencies.
 
 **Database Setup**
 1. `bin/rails db:setup` create schema
